@@ -46,6 +46,11 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
+        // Redirect to company creation if user doesn't have a company
+        if (!$user->company_id) {
+            return to_route('company.create');
+        }
+
         return to_route('dashboard');
     }
 }

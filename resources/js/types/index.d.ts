@@ -18,12 +18,18 @@ export interface NavItem {
     isActive?: boolean;
 }
 
-export interface SharedData extends PageProps {
+export interface Company {
+    id: number;
     name: string;
-    quote: { message: string; author: string };
-    auth: Auth;
-    ziggy: Config & { location: string };
-    sidebarOpen: boolean;
+    address?: string;
+    city?: string;
+    country?: string;
+    phone?: string;
+    email?: string;
+    website?: string;
+    logo?: string;
+    created_at: string;
+    updated_at: string;
 }
 
 export interface User {
@@ -34,6 +40,16 @@ export interface User {
     email_verified_at: string | null;
     created_at: string;
     updated_at: string;
+    company_id?: number;
+    company?: Company;
+}
+
+export interface SharedData extends PageProps {
+    name: string;
+    quote: { message: string; author: string };
+    auth: Auth;
+    ziggy: Config & { location: string };
+    sidebarOpen: boolean;
 }
 
 export type BreadcrumbItemType = BreadcrumbItem;

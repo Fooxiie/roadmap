@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use Inertia\Response;
+use Illuminate\View\View;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -32,6 +33,11 @@ class AuthenticatedSessionController extends Controller
         $request->authenticate();
 
         $request->session()->regenerate();
+
+        // Redirect to company creation if user doesn't have a company
+        if (!Auth::user()->company_id) {
+            return redirect()->route('company.create');
+        }
 
         return redirect()->intended(route('dashboard', absolute: false));
     }
